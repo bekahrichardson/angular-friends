@@ -15,22 +15,22 @@
     <form class="form-inline searchForm" role="form">
       <div class="form-group">
 
-          <input class="form-control" placeholder="Search Anything About Your Friends"
-                        ng-model="friendFilter">
-          <input class="form-control" placeholder="Search Name" ng-model="friendFilter.name">
-          <input class="form-control" placeholder="Search Location" ng-model="friendFilter.current_location.name">
+          <input class="form-control" placeholder="Search Friends by Name" ng-model="friendFilter.name">
+          <input class="form-control" placeholder="Search Friends by Location" ng-model="friendFilter.current_location.$">
+          <!-- <input class="form-control" placeholder="Search Name" ng-model="friendFilter.name">
+          <input class="form-control" placeholder="Search Location" ng-model="friendFilter.current_location.name"> -->
 
           <!-- <li ng-repeat="friend in friends | filter: friendFilter"> -->
 
-        <select class="input-medium">
-          <option>Name</option>
-          <option>#Friends</option>
-          <option>City</option>
-          <option>State</option>
-          <option>Country</option>
+        <select class="input-medium" ng-model="sortProp">
+          <option value="name">Name</option>
+          <option value="friend_count">#Friends</option>
+          <option value="current_location.city">City</option>
+          <option value="current_location.state">State</option>
+          <option value="current_location.country">Country</option>
         </select>
 
-        <select class="input-medium">
+        <select class="input-medium" ng-model="sortDirection">
           <option value="+">Descending</option>
           <option value="-">Ascending</option>
         </select>
@@ -39,7 +39,7 @@
     </form>
 
     <ul>
-      <li class='friend' ng-repeat="friend in friends | filter: friendFilter">
+      <li ng-repeat="friend in friends | filter: friendFilter | orderBy: sortDirection + sortProp ">
         <img class="profile-pic" ng-src='{{friend.pic_square}}'>
 
         <h3>{{friend.name}}</h3>
