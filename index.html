@@ -7,7 +7,7 @@
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body ng-controller="FriendController">
-    {{test}}
+    {{}}
 
   <h1>The <strong>facebook</strong> Friend Machine</h1>
 
@@ -39,21 +39,21 @@
     </form>
 
     <ul>
-      <li class='friend'>
-        <img class="profile-pic" src='http://placebear.com/50/50.jpg'>
+      <li class='friend' ng-repeat="friend in friends">
+        <img class="profile-pic" ng-src='{{friend.pic_square}}'>
 
-        <h3>Cali Fornia</h3>
+        <h3>{{friend.name}}</h3>
 
         <div class="location">
-          Location: New Port Beach, California, United States
+          Location: {{friend.current_location.city}}, {{friend.current_location.state}}, {{friend.current_location.country}},
         </div>
 
         <div class="status">
-          Status: I hate the snow. I wish I was on the beach right now!!! <span class="hashtag">#ihateprovo</span>
+          Status: {{friend.status.message}}
         </div>
 
         <div class="num-friends">
-          Friends: 1,367
+          Friends: {{friend.friend_count}}
         </div>
       </li>
     </ul>
