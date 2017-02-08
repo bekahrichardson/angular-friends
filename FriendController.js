@@ -1,4 +1,5 @@
 angular.module("app").controller('FriendController', function($scope){
+  $scope.searchTerm = $scope.friendFilter;
   $scope.friends = [
     {
       "name": "Preston McNeil",
